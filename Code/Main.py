@@ -23,9 +23,11 @@ colorStyles = ['k','r','g','b','y','c','m','purple','pink','orange']
 statistic = ['mean','median','variance','kurtosis','skewness','min','max']
 for i in range(1,25):
     for s in range(7):
-        dataScaled = dataScaled.rename(columns = {(i-1)*7+s:str(i)+'_'+ statistic[s]})
+        dataScaled = dataScaled.rename(columns = {(i-1)+s*24:str(i)+'_'+ statistic[s]})
+        data = data.rename(columns = {(i-1)+s*24:str(i)+'_'+ statistic[s]})
 
 ##adding label data
+data['label'] = labels
 dataScaled['label'] = labels
 
 ##example use of filter based on new column naming
