@@ -41,32 +41,60 @@ dataScaled['label'] = labels
 
 ##example use of filter based on new column naming
 dataMeans = dataScaled.filter(regex='mean')
+##means = []
+##variances = []
+##for label in range(1,11):
+##    genre = data.loc[data.label==label]
+##    for band in range(1,25):
+##        averageMean = genre[str(band)+'_Band_mean'].mean()
+##        averageVariance = np.sqrt((np.sum(genre[str(band)+'_Band_variance']**2)+np.sum((genre[str(band)+'_Band_mean']-averageMean)**2))/data.shape[0])
+##        means.append(averageMean)
+##        variances.append(averageVariance)
+####    for cls in range(1,13):
+####        averageMean = genre[str(cls)+'_Class_mean'].mean()
+####        averageVariance = np.sqrt((np.sum(genre[str(cls)+'_Class_stddev']**4)+np.sum((genre[str(cls)+'_Band_mean']-averageMean)**2))/data.shape[0])
+####        means.append(averageMean)
+####        variances.append(averageVariance)
+####    for coef in range(1,13):
+####        averageMean = genre[str(coef)+'_Coefficients_mean'].mean()
+####        averageVariance = np.sqrt((np.sum(genre[str(coef)+'_Coefficients_stddev']**4)+np.sum((genre[str(coef)+'_Band_mean']-averageMean)**2))/data.shape[0])
+####        means.append(averageMean)
+####        variances.append(averageVariance)
+##    plt.errorbar(range(1,25),means[24*(label-1):24*label],variances[24*(label-1):24*label],label = 'genre'+ str(label))
+##plt.title('Rhythem genre average data')
+##plt.legend()
+##plt.show()
+##
+##means = []
+##stddev = []
+##for label in range(1,11):
+##    genre = data.loc[data.label==label]
+##    for Class in range(1,13):
+##        averageMean = genre[str(Class)+'_Class_mean'].mean()
+##        averageStddev = np.sqrt((np.sum(genre[str(Class)+'_Class_stddev']**2)+np.sum((genre[str(Class)+'_Class_mean']-averageMean)**2))/data.shape[0])
+##        means.append(averageMean)
+##        stddev.append(averageStddev)
+##    plt.errorbar(range(1,13),means[12*(label-1):12*label],stddev[12*(label-1):12*label],label = 'genre'+ str(label))
+##plt.title('Pitch genre average data')
+##plt.legend()
+##plt.show()
+
 means = []
-variances = []
+stddev = []
+data.iloc[np.where(data.values==1000000)]=1E-6
 for label in range(1,11):
     genre = data.loc[data.label==label]
-    for band in range(1,25):
-        averageMean = genre[str(band)+'_Band_mean'].mean()
-        averageVariance = np.sqrt((np.sum(genre[str(band)+'_Band_variance']**2)+np.sum((genre[str(band)+'_Band_mean']-averageMean)**2))/data.shape[0])
+    for Coefficients in range(1,13):
+        averageMean = genre[str(Coefficients)+'_Coefficients_mean'].mean()
+        if averageMean==1000000:
+            averageMean=1E-6
+        averageStddev = np.sqrt((np.sum(genre[str(Coefficients)+'_Coefficients_stddev']**2)+np.sum((genre[str(Coefficients)+'_Coefficients_mean']-averageMean)**2))/data.shape[0])
         means.append(averageMean)
-        variances.append(averageVariance)
-##    for cls in range(1,13):
-##        averageMean = genre[str(cls)+'_Class_mean'].mean()
-##        averageVariance = np.sqrt((np.sum(genre[str(cls)+'_Class_stddev']**4)+np.sum((genre[str(cls)+'_Band_mean']-averageMean)**2))/data.shape[0])
-##        means.append(averageMean)
-##        variances.append(averageVariance)
-##    for coef in range(1,13):
-##        averageMean = genre[str(coef)+'_Coefficients_mean'].mean()
-##        averageVariance = np.sqrt((np.sum(genre[str(coef)+'_Coefficients_stddev']**4)+np.sum((genre[str(coef)+'_Band_mean']-averageMean)**2))/data.shape[0])
-##        means.append(averageMean)
-##        variances.append(averageVariance)
-    print(label)
-    print(means[24*(label-1):24*label])
-    plt.errorbar(range(1,25),means[24*(label-1):24*label],variances[24*(label-1):24*label],label = 'genre'+ str(label))
-    
+        stddev.append(averageStddev)
+    plt.errorbar(range(1,13),means[12*(label-1):12*label],stddev[12*(label-1):12*label],label = 'genre'+ str(label))
+plt.title('MFCCs genre average data')
 plt.legend()
 plt.show()
-
 
 ####creating a plot of means for each band *option for one color per genre and 1 vs all possible
 ##for label in range(1,11):#this is for iterating through all labels
