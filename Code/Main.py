@@ -13,6 +13,3 @@ predict = classify('logistic')
 result = getResult(predict)
 
 # Export to CSV
-
-
-print(result)
