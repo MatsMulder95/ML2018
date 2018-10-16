@@ -49,16 +49,6 @@ dataScaled['label'] = labels
 dataMeans = dataScaled.filter(regex='mean')
 data.to_csv('data/filtered/ordered_data.csv')
 test.to_csv('data/filtered/ordered_test_data.csv')
-genreLength = []
-indexSelect = []
-for i in range(1,11):
-    genreLength.append(labels.values[:,0].tolist().count(i))
-lenMin = np.min(genreLength)
-for genre in range(1,11):
-    genreIndex = data.loc[data.label==genre].index.tolist()
-    genreSelect = random.sample(genreIndex,lenMin)
-    indexSelect.extend(genreSelect)
-filteredData = data.loc[indexSelect]
 columnList = []
 columnList.extend(data.filter(regex='mean').columns.tolist())
 columnList.extend(data.filter(regex='variance').columns.tolist())
@@ -71,9 +61,17 @@ columnList.extend(['label'])
 featureSelection = data[columnList]
 featureSelection.to_csv('data/filtered/selected_data.csv')
 
-
-##filteredData = data.loc[indexSelect]
-##filteredData.to_csv('data/filtered/filtered_data.csv')
+genreLength = []
+indexSelect = []
+for i in range(1,11):
+    genreLength.append(labels.values[:,0].tolist().count(i))
+lenMin = np.min(genreLength)
+for genre in range(1,11):
+    genreIndex = data.loc[data.label==genre].index.tolist()
+    genreSelect = random.sample(genreIndex,lenMin)
+    indexSelect.extend(genreSelect)
+filteredData = data.loc[indexSelect]
+filteredData.to_csv('data/filtered/filtered_data.csv')
 ##means = []
 ##variances = []
 ##for label in range(1,11):
