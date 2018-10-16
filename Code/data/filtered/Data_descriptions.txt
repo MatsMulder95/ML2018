@@ -1,0 +1,44 @@
+ordered_data.csv	$the data has only been labeled and faulty columns were removed$
+the data set has been labeled with columns names on the first row
+the naming scheme of the columns is as follows: 
+#number of band#_Band_#name of statistic# for all Rhythem data points
+#number of class#_Class_#name of statistic# for all Chroma data points
+#number of coefficient#_Coefficient_#name of statistic# for all MFCCs data points
+the faulty columns in MFCCs coefficient 1-4 means which were 1000000 were changed to 1E-6
+to import the data the following code can be used
+train_data = pd.read_csv('data/filtered/ordered_data.csv',index_col=0)[:,:-1]
+train_labels = pd.read_csv('data/filtered/ordered_data.csv',index_col=0)[:,-1]
+test_data = pd.read_csv('data/filtered/ordered_test_data.csv',index_col=0)
+
+
+selected_data.csv	$Best dataset so far$
+the data set has been labeled with columns names on the first row
+the columns have been selected down to only the following statistics: mean, variance, kurtosis, skewness, standard deviation
+the naming scheme of the columns is as follows: 
+#number of band#_Band_#name of statistic# for all Rhythem data points
+#number of class#_Class_#name of statistic# for all Chroma data points
+#number of coefficient#_Coefficient_#name of statistic# for all MFCCs data points
+the faulty columns in MFCCs coefficient 1-4 means which were 1000000 were changed to 1E-6
+to import the data the following code can be used
+train_data = pd.read_csv('data/filtered/selected_data.csv',index_col=0)[:,:-1]
+train_labels = pd.read_csv('data/filtered/selected_data.csv',index_col=0)[:,-1]
+test_data = pd.read_csv('data/filtered/selected_test.csv',index_col=0)
+
+
+filtered_data.csv	$very small dataset but not working well$
+the data set has been labeled with columns names on the first row
+a random sample was chose from each genre to have matching batch sizes for each genre
+the naming scheme of the columns is as follows: 
+#number of band#_Band_#name of statistic# for all Rhythem data points
+#number of class#_Class_#name of statistic# for all Chroma data points
+#number of coefficient#_Coefficient_#name of statistic# for all MFCCs data points
+the faulty columns in MFCCs coefficient 1-4 means which were 1000000 were changed to 1E-6
+to import the data the following code can be used
+train_data = pd.read_csv('data/filtered/filtered_data.csv',index_col=0)[:,:-1]
+train_labels = pd.read_csv('data/filtered/filtered_data.csv',index_col=0)[:,-1]
+test_data = pd.read_csv('data/filtered/ordered_test_data.csv',index_col=0)
+
+
+
+
+
