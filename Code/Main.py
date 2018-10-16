@@ -26,6 +26,9 @@ print(test_data.shape)
 
 #train_data['label'] = train_labels
 
+###Visualize data
+
+###Train Classifier
 
 # Set input
 X_train = train_data   # Input train data
@@ -45,3 +48,7 @@ with open("data/output.csv", "w", newline='') as myfile:
     wr.writerow(["Sample_id","Sample_label"])
     for i in range(0,X_validate.shape[0]):
         wr.writerow([i+1,str(predict[i].item())])
+
+###Visualize output
+
+        
